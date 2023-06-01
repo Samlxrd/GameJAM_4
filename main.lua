@@ -29,6 +29,11 @@ function love.load()
 end
 
 function love.update(dt)
+    if win ~= nil then
+        if love.keyboard.isDown('space') then
+            jogo = Jogo()
+        end
+    end
     jogo:update(dt)
 end
 
