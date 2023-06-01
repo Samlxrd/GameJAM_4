@@ -2,6 +2,7 @@ Display = Classe:extend()
 
 function Display:new()
     font = love.graphics.newFont('fonts/CANDARA.TTF', 32)
+    fontsmall = love.graphics.newFont('fonts/CANDARA.TTF', 16)
     love.graphics.setFont(font)
     BotaoSingleplayer = love.graphics.newImage('img/BotaoSingleplayer.png')
     BotaoMultiplayer = love.graphics.newImage('img/BotaoMultiplayer.png')
@@ -29,6 +30,7 @@ function Display:draw()
     love.graphics.setColor(1, 1, 1)
 
     if jogo.state == 1 then
+        love.graphics.setFont(font)
         text = "Player 1:  ".. p1.score .. "\t\t\t\t\t\t\t\t" .. "Player 2:  ".. p2.score
         local x = love.graphics.getWidth()
         local font = love.graphics.getFont()
@@ -37,9 +39,16 @@ function Display:draw()
     end
 
     if win then
+        love.graphics.setFont(font)
         text = "Player ".. win .. " venceu o jogo!"
         local wx = love.graphics.getWidth()
         local f2x = font.getWidth(font, text)/2
         love.graphics.print(text, wx/2 - f2x, 150, 0, 1,1,0)
+
+        love.graphics.setFont(fontsmall)
+        text = "Pressione <space> para voltar ao menu!"
+        local fsx = font.getWidth(fontsmall, text)/2
+        love.graphics.print(text, wx/2 - fsx, 190, 0, 1,1,0)
+
     end
 end
